@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="freeware-opensource:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/freeware_opensource_jar</output-path>
+    <root id="archive" name="freeware-opensource.jar">
+      <element id="module-output" name="freeware-opensource" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libraries/x.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libraries/commons-io-2.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libraries/commons-lang3-3.3.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libraries/lwjgl-2.9.4-nightly-20150209.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libraries/lwjgl_util-2.9.4-nightly-20150209.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

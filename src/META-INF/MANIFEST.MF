@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Can-Set-Native-Prefix: true
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+Main-Class: freeware.Main
+Premain-Class: freeware.Agent
+Agent-Class: freeware.Agent
+
