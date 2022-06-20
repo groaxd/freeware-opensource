@@ -1,6 +1,8 @@
-package freeware;
+package freeware.transformer.impl;
 
-import java.util.*;
+import freeware.Transformer;
+import freeware.helper.TransformerHelpers;
+import freeware.helper.Utils;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.*;
 public class HelperTransformer extends Transformer {
@@ -22,7 +24,7 @@ public class HelperTransformer extends Transformer {
                     list2.add(new VarInsnNode(ALOAD, 0));
                     list2.add(new MethodInsnNode(INVOKEVIRTUAL, "net/minecraft/client/multiplayer/WorldClient", "getBlockState", "(Lnet/minecraft/BlockPos;)Lnet/minecraft/block/state/IBlockState;"));
                     list2.add(new MethodInsnNode(INVOKEINTERFACE, "net/minecraft/block/state/IBlockState", "getBlock", "()Lnet/minecraft/block/Block;", true));
-                    list2.add(new InsnNode(176));
+                    list2.add(new InsnNode(ARETURN));
                     methodNode.instructions.insert(list2);
                 }
             }

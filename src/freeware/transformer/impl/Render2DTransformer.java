@@ -1,7 +1,9 @@
-package freeware;
+package freeware.transformer.impl;
+import freeware.Transformer;
+import freeware.helper.Utils;
+import freeware.rawfeatures.onRender2D;
 import org.objectweb.asm.*;
 import org.objectweb.asm.tree.*;
-import java.util.*;
 
 public class Render2DTransformer extends Transformer
 {

@@ -1,4 +1,4 @@
-package freeware;
+package freeware.helper;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -23,14 +23,14 @@ public class TransformerHelpers {
         }
     }
 
-    public static float BB(Entity current, Entity entityIn) {
+    public static float getDistance(Entity current, Entity entityIn) {
         float f = (float) (current.posX - entityIn.posX);
         float f1 = (float) (current.posY - entityIn.posY);
         float f2 = (float) (current.posZ - entityIn.posZ);
         return (float) Math.sqrt(f * f + f1 * f1 + f2 * f2);
     }
 
-    public static boolean BC() {
+    public static boolean isOnInventory() {
         return getMinecraft().currentScreen instanceof GuiInventory;
     }
 

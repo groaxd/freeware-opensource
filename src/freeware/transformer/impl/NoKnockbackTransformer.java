@@ -1,5 +1,8 @@
-package freeware;
+package freeware.transformer.impl;
 
+import freeware.Transformer;
+import freeware.helper.Utils;
+import freeware.modules.impl.NoKnockback;
 import org.objectweb.asm.*;
 import org.objectweb.asm.tree.*;
 

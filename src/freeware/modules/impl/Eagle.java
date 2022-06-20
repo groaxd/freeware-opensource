@@ -1,20 +1,18 @@
-package freeware;
+package freeware.modules.impl;
+
+import freeware.helper.FabricReflect;
+import freeware.helper.TransformerHelpers;
+import freeware.modules.Module;
 
 public class Eagle extends Module {
-   public static boolean AN = false;
+   public static boolean state1 = false;
 
    public Eagle() {
       super("Speed Bridge", 33);
    }
 
-   public static boolean Am() {
-      return AN;
-   }
 
-   public void AO() {
-   }
-
-   public void AP() {
+   public void onDisable() {
       try {
          FabricReflect.writeField(TransformerHelpers.getMinecraft().gameSettings.keyBindSneak, false, "f", "pressed");
       } catch (Exception var2) {
@@ -22,7 +20,7 @@ public class Eagle extends Module {
 
    }
 
-   public void AQ() {
-      AN = !AN;
+   public void onToggle() {
+      state1 = !state1;
    }
 }

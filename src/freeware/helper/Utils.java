@@ -1,4 +1,4 @@
-package freeware;
+package freeware.helper;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.*;
 import java.util.*;

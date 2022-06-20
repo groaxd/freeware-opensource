@@ -1,6 +1,12 @@
-package freeware;
+package freeware.rawfeatures;
+
+import freeware.helper.*;
+
+import freeware.manager.*;
+import freeware.modules.Module;
 
 import net.minecraft.util.EnumChatFormatting;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -21,13 +27,13 @@ public class onRender2D
         GL11.glPopMatrix();
         int n3 = 2;
         for (final Module module : ModuleManager.AA) {
-            TransformerHelpers.getMinecraft().fontRendererObj.drawString(EnumChatFormatting.GOLD + "[" + Keyboard.getKeyName(module.AJ()) + "] " + (module.AL() ? EnumChatFormatting.GREEN : EnumChatFormatting.GRAY) + module.name, n - TransformerHelpers.getMinecraft().fontRendererObj.getStringWidth(module.name) - 21.0f, (float)n3, 1, true);
+            TransformerHelpers.getMinecraft().fontRendererObj.drawString(EnumChatFormatting.GOLD + "[" + Keyboard.getKeyName(module.key) + "] " + (module.state ? EnumChatFormatting.GREEN : EnumChatFormatting.GRAY) + module.name, n - TransformerHelpers.getMinecraft().fontRendererObj.getStringWidth(module.name) - 21.0f, (float)n3, 1, true);
             n3 += 10;
         }
     }
-    
 
-    
+
+
     public static void scale(final float n, final float n2, final float n3) {
         GL11.glScalef(n, n2, n3);
     }

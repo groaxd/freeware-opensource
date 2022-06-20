@@ -1,12 +1,14 @@
-package freeware;
+package freeware.rawfeatures;
 
-import net.minecraft.*;
-import net.minecraft.block.BlockAir;
+import freeware.helper.FabricReflect;
+import freeware.manager.FriendManager;
+import freeware.helper.Timer;
+import freeware.helper.TransformerHelpers;
+import freeware.modules.impl.*;
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.C02PacketUseEntity;
@@ -26,22 +28,22 @@ public class onMotionUpdate {
             FriendManager.AX();
             onMotionUpdate.AR = true;
         }
-        if (KillAura.AF && onMotionUpdate.AP.Ai(150.0) && TransformerHelpers.getMinecraft().thePlayer != null && TransformerHelpers.getMinecraft().theWorld != null && TransformerHelpers.getMinecraft().theWorld.loadedEntityList != null && !TransformerHelpers.getMinecraft().theWorld.loadedEntityList.isEmpty()) {
+        if (KillAura.state1 && onMotionUpdate.AP.Ai(150.0) && TransformerHelpers.getMinecraft().thePlayer != null && TransformerHelpers.getMinecraft().theWorld != null && TransformerHelpers.getMinecraft().theWorld.loadedEntityList != null && !TransformerHelpers.getMinecraft().theWorld.loadedEntityList.isEmpty()) {
             for (int i = 0; i < TransformerHelpers.getMinecraft().theWorld.loadedEntityList.size(); ++i) {
                 final Entity pc = TransformerHelpers.getMinecraft().theWorld.loadedEntityList.get(i);
-                if (pc != null && pc != TransformerHelpers.getMinecraft().thePlayer && TransformerHelpers.BB(TransformerHelpers.getMinecraft().thePlayer, pc) <= 4.0f && !FriendManager.AW(pc.toString().split("'")[1])) {
+                if (pc != null && pc != TransformerHelpers.getMinecraft().thePlayer && TransformerHelpers.getDistance(TransformerHelpers.getMinecraft().thePlayer, pc) <= 4.0f && !FriendManager.isFriend(pc.toString().split("'")[1])) {
                     TransformerHelpers.getMinecraft().thePlayer.swingItem();
                     TransformerHelpers.getMinecraft().getNetHandler().addToSendQueue(new C02PacketUseEntity(pc, C02PacketUseEntity.Action.ATTACK));
                 }
             }
         }
-        if (Eagle.AN && TransformerHelpers.getMinecraft().thePlayer != null) {
+        if (Eagle.state1 && TransformerHelpers.getMinecraft().thePlayer != null) {
             final BlockPos blockPos = new BlockPos(TransformerHelpers.getMinecraft().thePlayer.posX, TransformerHelpers.getMinecraft().thePlayer.posY - 1.0, TransformerHelpers.getMinecraft().thePlayer.posZ);
             if (TransformerHelpers.getBlock(blockPos) == Blocks.air) {
                     FabricReflect.writeField(TransformerHelpers.getMinecraft().gameSettings.keyBindSneak, true, "f", "pressed");
                 }
         }
-        if (ChestStealer.AJ) {
+        if (ChestStealer.state1) {
             ++onMotionUpdate.AS;
             if (TransformerHelpers.getMinecraft().currentScreen instanceof GuiChest) {
                 final GuiChest e8 = (GuiChest) TransformerHelpers.getMinecraft().currentScreen;
@@ -57,7 +59,7 @@ public class onMotionUpdate {
                 }
             }
         }
-        if (AutoArmor.AK && !TransformerHelpers.BC()) {
+        if (AutoArmor.state1 && !TransformerHelpers.isOnInventory()) {
             int[] bestArmor1 = new int[4];
             Arrays.fill(bestArmor1, -1);
             for (int i = 0; i < 36; i++) {
@@ -95,12 +97,12 @@ public class onMotionUpdate {
                 }
             }
         }
-        if (FastPlace.AO) {
+        if (FastPlace.state1) {
             if ((int) FabricReflect.getFieldValue(TransformerHelpers.getMinecraft(), "l", "rightClickDelayTimer") > 0) {
                 FabricReflect.writeField(TransformerHelpers.getMinecraft(), 0, "l", "rightClickDelayTimer");
             }
         }
-        if (SpeedMine.AI) {
+        if (SpeedMine.state1) {
             if ((int) FabricReflect.getFieldValue(TransformerHelpers.getMinecraft().getNetHandler(), "e", "blockHitDelay") > 0) {
                 FabricReflect.writeField(TransformerHelpers.getMinecraft().getNetHandler(), 0, "e", "blockHitDelay");
             }

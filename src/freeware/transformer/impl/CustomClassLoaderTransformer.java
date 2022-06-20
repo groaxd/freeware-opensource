@@ -1,5 +1,7 @@
-package freeware;
+package freeware.transformer.impl;
 
+import freeware.Agent;
+import freeware.Transformer;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.*;
 
@@ -15,20 +17,20 @@ public class CustomClassLoaderTransformer extends Transformer {
                     final LabelNode labelNode = new LabelNode();
                     final InsnList list = new InsnList();
                     list.add(labelNode);
-                    list.add(new VarInsnNode(25, 0));
-                    list.add(new TypeInsnNode(187, "java/io/File"));
-                    list.add(new InsnNode(89));
+                    list.add(new VarInsnNode(ALOAD, 0));
+                    list.add(new TypeInsnNode(NEW, "java/io/File"));
+                    list.add(new InsnNode(DUP));
                     list.add(new LdcInsnNode(BF()));
-                    list.add(new MethodInsnNode(183, "java/io/File", "<init>", "(Ljava/lang/String;)V"));
-                    list.add(new MethodInsnNode(182, "java/io/File", "toURI", "()Ljava/net/URI;"));
-                    list.add(new MethodInsnNode(182, "java/net/URI", "toURL", "()Ljava/net/URL;"));
-                    list.add(new MethodInsnNode(182, "ks", "addURL", "(Ljava/net/URL;)V"));
+                    list.add(new MethodInsnNode(INVOKESPECIAL, "java/io/File", "<init>", "(Ljava/lang/String;)V"));
+                    list.add(new MethodInsnNode(INVOKEVIRTUAL, "java/io/File", "toURI", "()Ljava/net/URI;"));
+                    list.add(new MethodInsnNode(INVOKEVIRTUAL, "java/net/URI", "toURL", "()Ljava/net/URL;"));
+                    list.add(new MethodInsnNode(INVOKEVIRTUAL, "ks", "addURL", "(Ljava/net/URL;)V"));
                     methodNode.instructions.add(list);
                     AbstractInsnNode[] array;
                     for (int length = (array = methodNode.instructions.toArray()).length, i = 0; i < length; ++i) {
                         final AbstractInsnNode abstractInsnNode = array[i];
-                        if (abstractInsnNode.getOpcode() == 177) {
-                            methodNode.instructions.set(abstractInsnNode, new JumpInsnNode(167, labelNode));
+                        if (abstractInsnNode.getOpcode() == RETURN) { // brainless trick lmao
+                            methodNode.instructions.set(abstractInsnNode, new JumpInsnNode(GOTO, labelNode));
                             methodNode.instructions.add(abstractInsnNode);
                         }
                     }

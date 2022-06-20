@@ -1,4 +1,4 @@
-package freeware;
+package freeware.helper;
 
 import java.lang.reflect.Field;
 import java.util.Iterator;

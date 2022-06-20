@@ -1,9 +1,10 @@
-package freeware;
+package freeware.transformer.impl;
 
+import freeware.Transformer;
+import freeware.manager.ModuleManager;
+import freeware.helper.Utils;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.*;
-
-import java.util.*;
 
 public class ListenKeyTransformer extends Transformer
 {

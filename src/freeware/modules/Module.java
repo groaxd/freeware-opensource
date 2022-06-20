@@ -1,7 +1,7 @@
-package freeware;
+package freeware.modules;
 
-import java.util.*;
-
+import freeware.manager.ModuleManager;
+import freeware.helper.TransformerHelpers;
 import net.minecraft.util.EnumChatFormatting;
 
 public class Module {
@@ -33,30 +33,12 @@ public class Module {
         return null;
     }
 
-    public int AJ() {
-        return this.key;
+    public void setState(final boolean b) {
+        this.print(this.name, b);
+        this.state = b;
     }
 
-    public void AK(final int ad) {
-        this.key = ad;
-    }
-
-    public boolean AL() {
-        return this.state;
-    }
-
-    public void AM(final boolean b) {
-        this.AN(this.name, b);
-        if (b) {
-            this.onEnable();
-            this.state = true;
-        } else {
-            this.onDisable();
-            this.state = false;
-        }
-    }
-
-    public void AN(final String s, final boolean b) {
+    public void print(final String s, final boolean b) {
         final String string = EnumChatFormatting.DARK_GRAY + "[" + EnumChatFormatting.GOLD + "Freeware" + EnumChatFormatting.DARK_GRAY + "] ";
         String s2;
         if (b) {
@@ -73,7 +55,7 @@ public class Module {
     public void onDisable() {
     }
 
-    public void AQ() {
+    public void onToggle() {
         if (this.state) {
             try {
                 this.onEnable();
@@ -87,12 +69,9 @@ public class Module {
         }
     }
 
-    public String AR() {
-        return this.name;
-    }
 
-    public void AS() {
-        this.AM(!this.AL());
-        this.AQ();
+    public void toggle() {
+        this.setState(!this.state);
+        this.onToggle();
     }
 }
